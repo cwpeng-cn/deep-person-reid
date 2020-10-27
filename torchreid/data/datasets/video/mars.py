@@ -25,7 +25,7 @@ class Mars(VideoDataset):
     def __init__(self, root='', **kwargs):
         self.root = osp.abspath(osp.expanduser(root))
         self.dataset_dir = osp.join(self.root, self.dataset_dir)
-        self.download_dataset(self.dataset_dir, self.dataset_url)
+        # self.download_dataset(self.dataset_dir, self.dataset_url)
 
         self.train_name_path = osp.join(
             self.dataset_dir, 'info/train_name.txt'
