@@ -3,7 +3,7 @@ import torchreid
 
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
-    root='path/to/reid-data',
+    root='../mars',
     sources='mars',
     height=256,
     width=128,
