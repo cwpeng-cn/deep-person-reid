@@ -18,6 +18,7 @@ model = torchreid.models.build_model(
     loss='softmax'
 )
 
+
 model = model.cuda()
 optimizer = torchreid.optim.build_optimizer(
     model, optim='adam', lr=0.0003
