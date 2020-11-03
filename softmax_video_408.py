@@ -13,7 +13,7 @@ datamanager = torchreid.data.VideoDataManager(
 )
 
 model = torchreid.models.build_model(
-    name='resnet50',
+    name='resnet50_fc512',
     num_classes=datamanager.num_train_pids,
     loss='softmax'
 )
@@ -35,5 +35,5 @@ engine = torchreid.engine.VideoSoftmaxEngine(
 engine.run(
     max_epoch=60,
     save_dir='log/resnet50-softmax-mars',
-    print_freq=10, start_eval=0, eval_freq=1
+    print_freq=10, start_eval=30, eval_freq=5
 )
