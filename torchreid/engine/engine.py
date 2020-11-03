@@ -197,7 +197,6 @@ class Engine(object):
                     and eval_freq > 0 \
                     and (self.epoch + 1) % eval_freq == 0 \
                     and (self.epoch + 1) != self.max_epoch:
-                self.save_model(self.epoch, 0, save_dir)
                 rank1 = self.test(
                     dist_metric=dist_metric,
                     normalize_feature=normalize_feature,
@@ -360,7 +359,7 @@ class Engine(object):
         batch_time = AverageMeter()
 
         def _feature_extraction(data_loader):
-            f_, pids_, camids_ = [], [], []
+            f_, pids_, camids_ = torch.Tensor(), [], []
             for batch_idx, data in enumerate(data_loader):
                 imgs, pids, camids = self.parse_data_for_eval(data)
                 if self.use_gpu:
@@ -369,10 +368,12 @@ class Engine(object):
                 features = self.extract_features(imgs)
                 batch_time.update(time.time() - end)
                 features = features.data.cpu()
-                f_.append(features)
+                # f_.append(features)
+                f_ = torch.cat((f_, features), 0)
                 pids_.extend(pids)
                 camids_.extend(camids)
-            f_ = torch.cat(f_, 0)
+
+            # f_ = torch.cat(f_, 0)
             pids_ = np.asarray(pids_)
             camids_ = np.asarray(camids_)
             return f_, pids_, camids_
