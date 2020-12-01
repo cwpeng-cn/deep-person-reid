@@ -15,7 +15,12 @@ datamanager = torchreid.data.VideoDataManager(
 model = torchreid.models.build_model(
     name='resnet50_fc512gait',
     num_classes=datamanager.num_train_pids,
-    loss='softmax'
+    loss='softmax',
+    seq_num=15,
+    d_ff=2048,
+    h=4,
+    droprate=0.1,
+    N=6
 )
 
 model = model.cuda()
