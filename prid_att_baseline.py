@@ -13,7 +13,7 @@ datamanager = torchreid.data.VideoDataManager(
 )
 
 model = torchreid.models.build_model(
-    name='resnet50_fc512gait',
+    name='resnet50_fc512_att',
     num_classes=datamanager.num_train_pids,
     loss='softmax',
     seq_num=15,
