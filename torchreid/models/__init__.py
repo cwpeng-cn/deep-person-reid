@@ -115,5 +115,5 @@ def build_model(
         num_classes=num_classes,
         loss=loss,
         pretrained=pretrained,
-        use_gpu=use_gpu,
+        use_gpu=use_gpu, **kwargs
     )
