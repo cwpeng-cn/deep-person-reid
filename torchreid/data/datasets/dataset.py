@@ -36,16 +36,16 @@ class Dataset(object):
     _junk_pids = []
 
     def __init__(
-        self,
-        train,
-        query,
-        gallery,
-        transform=None,
-        k_tfm=1,
-        mode='train',
-        combineall=False,
-        verbose=True,
-        **kwargs
+            self,
+            train,
+            query,
+            gallery,
+            transform=None,
+            k_tfm=1,
+            mode='train',
+            combineall=False,
+            verbose=True,
+            **kwargs
     ):
         # extend 3-tuple (img_path(s), pid, camid) to
         # 4-tuple (img_path(s), pid, camid, dsetid) by
@@ -277,10 +277,10 @@ class Dataset(object):
               '  gallery  | {:5d} | {:7d} | {:9d}\n' \
               '  ----------------------------------------\n' \
               '  items: images/tracklets for image/video dataset\n'.format(
-                  num_train_pids, len(self.train), num_train_cams,
-                  num_query_pids, len(self.query), num_query_cams,
-                  num_gallery_pids, len(self.gallery), num_gallery_cams
-              )
+            num_train_pids, len(self.train), num_train_cams,
+            num_query_pids, len(self.query), num_query_cams,
+            num_gallery_pids, len(self.gallery), num_gallery_cams
+        )
 
         return msg
 
@@ -372,13 +372,13 @@ class VideoDataset(Dataset):
     """
 
     def __init__(
-        self,
-        train,
-        query,
-        gallery,
-        seq_len=15,
-        sample_method='evenly',
-        **kwargs
+            self,
+            train,
+            query,
+            gallery,
+            seq_len=15,
+            sample_method='evenly',
+            **kwargs
     ):
         super(VideoDataset, self).__init__(train, query, gallery, **kwargs)
         self.seq_len = seq_len
@@ -415,7 +415,7 @@ class VideoDataset(Dataset):
                 indices = np.concatenate(
                     [
                         indices,
-                        np.ones(num_pads).astype(np.int32) * (num_imgs-1)
+                        np.ones(num_pads).astype(np.int32) * (num_imgs - 1)
                     ]
                 )
             assert len(indices) == self.seq_len
@@ -435,7 +435,7 @@ class VideoDataset(Dataset):
             img = read_image(img_path)
             if self.transform is not None:
                 img = self.transform(img)
-            img = img.unsqueeze(0) # img must be torch.Tensor
+            img = img.unsqueeze(0)  # img must be torch.Tensor
             imgs.append(img)
         imgs = torch.cat(imgs, dim=0)
 
