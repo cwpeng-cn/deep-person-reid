@@ -28,7 +28,7 @@ load_pretrained_weights(model=model,weight_path="log/resnet50-softmax-prid2011/m
 model.cuda()
 
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=0.0001
+    model, optim='adam', lr=0.01
 )
 
 print(model)
