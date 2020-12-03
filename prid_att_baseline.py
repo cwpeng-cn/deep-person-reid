@@ -19,9 +19,9 @@ model = torchreid.models.build_model(
     loss='softmax',
     seq_num=15,
     d_ff=2048,
-    h=4,
+    h=1,
     droprate=0.1,
-    N=6
+    N=2
 )
 
 load_pretrained_weights(model=model,weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
