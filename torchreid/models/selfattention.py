@@ -113,7 +113,7 @@ class SelfAttention(nn.Module):
         self.encoder_layer = TransformerEncoderLayer(d_model, nhead, dim_feedforward,
                                                      dropout, activation, normalize_before)
         self.encoder_norm = nn.LayerNorm(d_model) if normalize_before else None
-        self.encoder = TransformerEncoder(self.encoder_layer, num_encoder_layers, encoder_norm)
+        self.encoder = TransformerEncoder(self.encoder_layer, num_encoder_layers, self.encoder_norm)
         self._reset_parameters()
 
     def forward(self, src, mask=None, query_embed=None, pos_embed=None):
