@@ -256,11 +256,11 @@ class ResNet_ATT(nn.Module):
         )
         self.classifier = nn.Linear(self.feature_dim, num_classes)
 
-        self._init_params()
-
         self.attn = MultiHeadedAttention(self.h, self.d_model, self.droprate)
         self.ff = PositionwiseFeedForward(self.d_model, self.d_ff, self.droprate)
         self.encoder = Encoder(EncoderLayer(self.d_model, c(self.attn), c(self.ff), self.droprate), self.N)
+
+        self._init_params()
 
         # Zero-initialize the last BN in each residual branch,
         # so that the residual branch starts with zeros, and each residual block behaves like an identity.
