@@ -371,8 +371,7 @@ class ResNet_ATT(nn.Module):
     def forward(self, x):
         f = self.featuremaps(x)
         v = self.global_avgpool(f)
-        print(v.shape)
-        v = v.view(v.size(0), self.seq_num, -1)
+        v = v.view(v.size(0)//self.seq_num, self.seq_num, -1)
         v = self.encoder(v, torch.ones((v.size(0), 1, self.seq_num)).cuda())
         v = torch.mean(v, 1)
         print(v.shape)
