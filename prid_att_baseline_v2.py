@@ -28,7 +28,7 @@ load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/
 model = model.cuda()
 optimizer = torchreid.optim.build_optimizer(
     model, optim='adam', lr=0.0003, staged_lr=True, new_layers=['fc', 'classifier', "attention"],
-    base_lr_mult=0
+    base_lr_mult=0.01
 )
 
 scheduler = torchreid.optim.build_lr_scheduler(
