@@ -1,5 +1,6 @@
 import torch
 import torchreid
+from torchreid.utils.torchtools import load_pretrained_weights
 
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
@@ -23,10 +24,14 @@ model = torchreid.models.build_model(
     N=6
 )
 
-model = model.cuda()
+load_pretrained_weights(model=model,weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
+model.cuda()
+
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=0.001
+    model, optim='adam', lr=0.0001
 )
+
+print(model)
 
 scheduler = torchreid.optim.build_lr_scheduler(
     optimizer, lr_scheduler='single_step', stepsize=20)
