@@ -372,8 +372,10 @@ class ResNet_ATT(nn.Module):
         f = self.featuremaps(x)
         v = self.global_avgpool(f)
         v = v.view(v.size(0), self.seq_num, -1)
-
-       ###########################################################
+        v = self.encoder(v, torch.ones((v.size(0), 1, self.seq_num)).cuda())
+        v = v.mean(1)
+        print(v.shape)
+        ###########################################################
 
         if self.fc is not None:
             v = self.fc(v)
