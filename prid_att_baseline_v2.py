@@ -15,9 +15,13 @@ datamanager = torchreid.data.VideoDataManager(
 model = torchreid.models.build_model(
     name='resnet50_fc512_att_v2',
     num_classes=datamanager.num_train_pids,
-    loss='softmax'
+    loss='softmax',
+    seq_num=15,
+    d_ff=2048,
+    h=1,
+    droprate=0.1,
+    N=2
 )
-
 
 model = model.cuda()
 optimizer = torchreid.optim.build_optimizer(
