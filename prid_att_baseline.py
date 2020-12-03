@@ -24,11 +24,12 @@ model = torchreid.models.build_model(
     N=2
 )
 
-load_pretrained_weights(model=model,weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
+load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
 model.cuda()
 
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=0.000001
+    model, optim='adam', lr=0.01, staged_lr=True, new_layers=['fc', 'classifier', "encoder", "attn", "ff"],
+    base_lr_mult=0
 )
 
 print(model)
