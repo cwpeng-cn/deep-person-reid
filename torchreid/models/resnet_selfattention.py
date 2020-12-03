@@ -373,7 +373,7 @@ class ResNet_ATT(nn.Module):
         v = self.global_avgpool(f)
         v = v.view(v.size(0), self.seq_num, -1)
         v = self.encoder(v, torch.ones((v.size(0), 1, self.seq_num)).cuda())
-        v = v.mean(1)
+        v = torch.mean(v, 1)
         print(v.shape)
         ###########################################################
 

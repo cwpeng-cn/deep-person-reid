@@ -120,9 +120,4 @@ class VideoSoftmaxATTEngine(ImageSoftmaxEngine):
         b, s, c, h, w = input.size()
         input = input.view(b * s, c, h, w)
         features = self.model(input)
-        features = features.view(b, s, -1)
-        if self.pooling_method == 'avg':
-            features = torch.mean(features, 1)
-        else:
-            features = torch.max(features, 1)[0]
         return features
