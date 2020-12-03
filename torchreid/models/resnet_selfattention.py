@@ -374,7 +374,6 @@ class ResNet_ATT(nn.Module):
         v = v.view(v.size(0)//self.seq_num, self.seq_num, -1)
         v = self.encoder(v, torch.ones((v.size(0), 1, self.seq_num)).cuda())
         v = torch.mean(v, 1)
-        print(v.shape)
         ###########################################################
 
         if self.fc is not None:
@@ -624,7 +623,7 @@ def attention(query, key, value, mask=None, dropout=0.0):
     d_k = query.size(-1)
     scores = torch.matmul(query, key.transpose(-2, -1)) \
              / math.sqrt(d_k)
-    print(scores.shape)
+    # print(scores.shape)
     if mask is not None:
         scores = scores.masked_fill(mask == 0, -1e9)
     p_attn = F.softmax(scores, dim=-1)
