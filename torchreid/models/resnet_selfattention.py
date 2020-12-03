@@ -256,10 +256,6 @@ class ResNet_ATT(nn.Module):
         )
         self.classifier = nn.Linear(self.feature_dim, num_classes)
 
-        self.attn = MultiHeadedAttention(self.h, self.d_model, self.droprate)
-        self.ff = PositionwiseFeedForward(self.d_model, self.d_ff, self.droprate)
-        self.encoder = Encoder(EncoderLayer(self.d_model, c(self.attn), c(self.ff), self.droprate), self.N)
-
         self._init_params()
 
         # Zero-initialize the last BN in each residual branch,
@@ -271,6 +267,10 @@ class ResNet_ATT(nn.Module):
                     nn.init.constant_(m.bn3.weight, 0)
                 elif isinstance(m, BasicBlock):
                     nn.init.constant_(m.bn2.weight, 0)
+
+        self.attn = MultiHeadedAttention(self.h, self.d_model, self.droprate)
+        self.ff = PositionwiseFeedForward(self.d_model, self.d_ff, self.droprate)
+        self.encoder = Encoder(EncoderLayer(self.d_model, c(self.attn), c(self.ff), self.droprate), self.N)
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
