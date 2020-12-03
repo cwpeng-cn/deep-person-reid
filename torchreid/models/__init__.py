@@ -22,6 +22,7 @@ from .resnet_ibn_b import *
 from .shufflenetv2 import *
 from .inceptionresnetv2 import *
 from .resnet_selfattention import resnet50_fc512 as resnet50_fc512_att
+from .resnet_selfattention_v2 import resnet50_fc512 as resnet50_fc512_att_v2
 
 __model_factory = {
     # image classification models
@@ -73,7 +74,8 @@ __model_factory = {
     'osnet_x0_25': osnet_x0_25,
     'osnet_ibn_x1_0': osnet_ibn_x1_0,
     'osnet_ain_x1_0': osnet_ain_x1_0,
-    'resnet50_fc512_att': resnet50_fc512_att
+    'resnet50_fc512_att': resnet50_fc512_att,
+    'resnet50_fc512_att_v2': resnet50_fc512_att_v2
 }
 
 
