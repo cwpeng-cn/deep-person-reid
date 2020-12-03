@@ -258,6 +258,10 @@ class ResNet_ATT(nn.Module):
 
         self._init_params()
 
+        self.attn = MultiHeadedAttention(self.h, self.d_model, self.droprate)
+        self.ff = PositionwiseFeedForward(self.d_model, self.d_ff, self.droprate)
+        self.encoder = Encoder(EncoderLayer(self.d_model, c(self.attn), c(self.ff), self.droprate), self.N)
+
         # Zero-initialize the last BN in each residual branch,
         # so that the residual branch starts with zeros, and each residual block behaves like an identity.
         # This improves the model by 0.2~0.3% according to https://arxiv.org/abs/1706.02677
@@ -268,9 +272,6 @@ class ResNet_ATT(nn.Module):
                 elif isinstance(m, BasicBlock):
                     nn.init.constant_(m.bn2.weight, 0)
 
-        self.attn = MultiHeadedAttention(self.h, self.d_model, self.droprate)
-        self.ff = PositionwiseFeedForward(self.d_model, self.d_ff, self.droprate)
-        self.encoder = Encoder(EncoderLayer(self.d_model, c(self.attn), c(self.ff), self.droprate), self.N)
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
