@@ -41,6 +41,6 @@ engine = torchreid.engine.VideoSoftmaxEngine(
 
 engine.run(
     max_epoch=100,
-    save_dir='log/resnet50attv2-softmax-prid2011',
+    save_dir='log/resnet50attv2-softmax-mars',
     print_freq=10, start_eval=30, eval_freq=1
 )
