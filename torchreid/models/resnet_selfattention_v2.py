@@ -373,7 +373,7 @@ class ResNet_ATT(nn.Module):
         v = v.view(-1, self.seq_num, v.size(-3))
         v = v.permute(1, 0, 2)
         v = self.attention(v)
-        v = v.permute(1, 0, 2)
+        v = v.permute(1, 0, 2).contiguous()
         v = v.view(-1, v.size(-1))
         ###########################################################
 
