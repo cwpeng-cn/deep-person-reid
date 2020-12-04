@@ -371,8 +371,8 @@ class ResNet_ATT(nn.Module):
         f = self.featuremaps(x)
         v = self.global_avgpool(f)
         v = v.view(-1, self.seq_num, v.size(-3)).contiguous()
-        v = self.attention(v.transpose(0, 1))
-        v = v.transpose(0, 1)
+        v = self.attention(v.transpose(0, 1).contiguous())
+        v = v.transpose(0, 1).contiguous()
         v = v.view(-1, v.size(-1))
         ###########################################################
 
