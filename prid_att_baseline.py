@@ -24,7 +24,7 @@ model = torchreid.models.build_model(
     N=2
 )
 
-load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
+# load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
 model.cuda()
 
 optimizer = torchreid.optim.build_optimizer(
@@ -44,5 +44,5 @@ engine = torchreid.engine.VideoSoftmaxATTEngine(
 engine.run(
     max_epoch=100,
     save_dir='log/resnet50att-softmax-prid2011',
-    print_freq=10, start_eval=22, eval_freq=2
+    print_freq=10, start_eval=20, eval_freq=2
 )
