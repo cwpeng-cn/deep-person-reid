@@ -370,11 +370,11 @@ class ResNet_ATT(nn.Module):
     def forward(self, x):
         f = self.featuremaps(x)
         v = self.global_avgpool(f)
-        v = v.view(-1, self.seq_num, v.size(-3)).contiguous()
+        v = v.view(-1, self.seq_num, v.size(-3))
         v = v.permute(1, 0, 2)
         v = self.attention(v)
         v = v.permute(1, 0, 2)
-        v = v.view(-1, v.size(-1)).contiguous()
+        v = v.view(-1, v.size(-1))
         ###########################################################
 
         if self.fc is not None:
