@@ -24,8 +24,8 @@ from .inceptionresnetv2 import *
 from .resnet_selfattention import resnet50_fc512 as resnet50_fc512_att
 from .resnet_selfattention_v2 import resnet50_fc512 as resnet50_fc512_att_v2
 from .resnet_selfattention_v3 import resnet50_fc512 as resnet50_fc512_att_v3
-from .resnet_video import resnet50 as resnet_video
-# from .resnet_video import resnet50_fc512 as resnet_video
+# from .resnet_video import resnet50 as resnet_video
+from .resnet_video import resnet50_fc512 as resnet_video
 
 __model_factory = {
     # image classification models
