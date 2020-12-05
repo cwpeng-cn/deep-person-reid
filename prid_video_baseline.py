@@ -2,6 +2,7 @@ import torch
 import torchreid
 from torchreid.utils.torchtools import load_pretrained_weights
 
+
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
     root='../../datasets',
