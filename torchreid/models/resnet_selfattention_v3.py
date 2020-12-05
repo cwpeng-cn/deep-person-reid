@@ -376,10 +376,11 @@ class ResNet_ATT(nn.Module):
         if self.fc is not None:
             v = self.fc(v)
 
-        v = v.view(v.size(0)//self.seq_num, self.seq_num, -1)
+        v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
         v = v.permute(1, 0, 2)
         v = self.attention(v)
         v = v.permute(1, 0, 2).contiguous()
+        v = v.view(-1, v.size(-1))
 
         if not self.training:
             return v
