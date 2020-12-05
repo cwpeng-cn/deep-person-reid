@@ -6,6 +6,7 @@ from torchreid.utils.torchtools import load_pretrained_weights
 datamanager = torchreid.data.VideoDataManager(
     root='../../datasets',
     sources='prid2011',
+    sample_method="random",
     height=256,
     width=128,
     combineall=False,
