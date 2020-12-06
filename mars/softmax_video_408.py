@@ -1,4 +1,6 @@
 import torch
+import sys
+sys.path.append("..")
 import torchreid
 
 # Each batch contains batch_size*seq_len images
