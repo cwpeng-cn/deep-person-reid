@@ -11,8 +11,8 @@ datamanager = torchreid.data.VideoDataManager(
     height=256,
     width=128,
     combineall=False,
-    batch_size_train=6,  # number of tracklets
-    seq_len=16  # number of images in each tracklet
+    batch_size_train=8,  # number of tracklets
+    seq_len=15  # number of images in each tracklet
 )
 
 model = torchreid.models.build_model(
