@@ -9,6 +9,7 @@ datamanager = torchreid.data.VideoDataManager(
     width=128,
     combineall=False,
     batch_size_train=8,  # number of tracklets
+    sample_method="random",
     seq_len=15  # number of images in each tracklet
 )
 
