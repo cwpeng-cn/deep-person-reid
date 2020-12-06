@@ -256,6 +256,7 @@ class ResNet_ATT(nn.Module):
             fc_dims, 512 * block.expansion, dropout_p
         )
         self.classifier = nn.Linear(self.feature_dim, num_classes)
+        self.feat_bn = nn.BatchNorm1d(self.feature_dim)
 
         self._init_params()
 
@@ -381,6 +382,7 @@ class ResNet_ATT(nn.Module):
         if not self.training:
             return v
 
+        v = self.feat_bn(v)
         y = self.classifier(v)
 
         if self.loss == 'softmax':
