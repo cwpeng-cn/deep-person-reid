@@ -1,6 +1,5 @@
 import torch
 import sys
-
 sys.path.append("..")
 import torchreid
 
@@ -16,14 +15,9 @@ datamanager = torchreid.data.VideoDataManager(
 )
 
 model = torchreid.models.build_model(
-    name='resnet_video_512',
+    name='resnet50_fc512',
     num_classes=datamanager.num_train_pids,
-    loss='softmax',
-    seq_num=15,
-    d_ff=2048,
-    h=1,
-    droprate=0.1,
-    N=2
+    loss='softmax'
 )
 
 model = model.cuda()
@@ -41,6 +35,6 @@ engine = torchreid.engine.VideoSoftmaxEngine(
 
 engine.run(
     max_epoch=60,
-    save_dir='log/resnet50-softmax-video-mars',
-    print_freq=10, start_eval=28, eval_freq=2
+    save_dir='log/resnet50-softmax-mars',
+    print_freq=10, start_eval=30, eval_freq=2
 )
