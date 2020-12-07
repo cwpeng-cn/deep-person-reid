@@ -1,6 +1,8 @@
 import torch
 import torchreid
 
+torch.manual_seed(0)
+
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
     root='../../datasets',
