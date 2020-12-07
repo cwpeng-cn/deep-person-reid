@@ -422,7 +422,7 @@ class VideoDataManager(DataManager):
         split_id=0,
         combineall=False,
         batch_size_train=3,
-        batch_size_test=3,
+        batch_size_test=1,
         workers=4,
         num_instances=4,
         num_cams=1,
@@ -507,7 +507,7 @@ class VideoDataManager(DataManager):
                 root=root,
                 split_id=split_id,
                 seq_len=seq_len,
-                sample_method=sample_method
+                sample_method='all'
             )
             self.test_loader[name]['query'] = torch.utils.data.DataLoader(
                 queryset,
@@ -528,7 +528,7 @@ class VideoDataManager(DataManager):
                 root=root,
                 split_id=split_id,
                 seq_len=seq_len,
-                sample_method=sample_method
+                sample_method='all'
             )
             self.test_loader[name]['gallery'] = torch.utils.data.DataLoader(
                 galleryset,
