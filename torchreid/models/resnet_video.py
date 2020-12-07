@@ -375,11 +375,12 @@ class ResNet_ATT(nn.Module):
         if self.fc is not None:
             v = self.fc(v)
 
-        v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
-        v = torch.mean(v, 1)
-
         if not self.training:
+            v = torch.mean(v, 0)
             return v
+        else:
+            v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
+            v = torch.mean(v, 1)
 
         y = self.classifier(v)
 
