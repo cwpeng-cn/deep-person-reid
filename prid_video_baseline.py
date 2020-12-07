@@ -11,7 +11,7 @@ datamanager = torchreid.data.VideoDataManager(
     height=256,
     width=128,
     combineall=False,
-    batch_size_train=8,  # number of tracklets
+    batch_size_train=16,  # number of tracklets
     seq_len=15  # number of images in each tracklet
 )
 
@@ -29,8 +29,7 @@ model = torchreid.models.build_model(
 # load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
 model = model.cuda()
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=8e-4, staged_lr=True, new_layers=['fc', 'classifier', "attention"],
-    base_lr_mult=0.1
+    model, optim='adam', lr=0.0003
 )
 
 scheduler = torchreid.optim.build_lr_scheduler(
