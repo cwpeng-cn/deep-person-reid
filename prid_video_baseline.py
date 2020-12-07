@@ -37,12 +37,11 @@ scheduler = torchreid.optim.build_lr_scheduler(
     optimizer, lr_scheduler='single_step', stepsize=20)
 
 engine = torchreid.engine.VideoSoftmaxATTEngine(
-    datamanager, model, optimizer, scheduler=scheduler,
-    pooling_method='avg'
+    datamanager, model, optimizer, scheduler=scheduler
 )
 
 engine.run(
     max_epoch=100,
-    save_dir='log/resnet50attv2-softmax-prid2011',
+    save_dir='log/resnet50-video-softmax-prid2011',
     print_freq=10, start_eval=10, eval_freq=3
 )
