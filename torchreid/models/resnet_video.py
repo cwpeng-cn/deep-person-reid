@@ -376,7 +376,8 @@ class ResNet_ATT(nn.Module):
             v = self.fc(v)
 
         if not self.training:
-            v = torch.mean(v, 0)
+            v = v.unsqueeze(0)
+            v = torch.mean(v, 1)
             return v
         else:
             v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
