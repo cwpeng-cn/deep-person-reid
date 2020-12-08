@@ -4,7 +4,7 @@ import sys
 sys.path.append("..")
 import torchreid
 
-torch.manual_seed(0)
+torch.manual_seed(5)
 
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
@@ -14,12 +14,13 @@ datamanager = torchreid.data.VideoDataManager(
     width=128,
     combineall=False,
     batch_size_train=8,  # number of tracklets
+    transforms=None,
     sample_method="random",
     seq_len=15  # number of images in each tracklet
 )
 
 model = torchreid.models.build_model(
-    name='resnet50',
+    name='resnet50_fc512',
     num_classes=datamanager.num_train_pids,
     loss='softmax'
 )
