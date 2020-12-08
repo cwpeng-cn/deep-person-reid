@@ -9,6 +9,7 @@ datamanager = torchreid.data.VideoDataManager(
     root='../',
     sources='prid2011gait',
     sample_method="random",
+    transforms=None,
     height=256,
     width=128,
     combineall=False,
