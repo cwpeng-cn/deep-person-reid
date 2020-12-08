@@ -1,16 +1,20 @@
 import torch
+import sys
+
+sys.path.append("..")
 import torchreid
 
 torch.manual_seed(0)
 
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
-    root='../../datasets',
+    root='../',
     sources='prid2011',
     height=256,
     width=128,
     combineall=False,
     batch_size_train=8,  # number of tracklets
+    transforms=None,
     sample_method="random",
     seq_len=15  # number of images in each tracklet
 )
@@ -37,5 +41,5 @@ engine = torchreid.engine.VideoSoftmaxEngine(
 engine.run(
     max_epoch=100,
     save_dir='log/resnet50-softmax-prid2011',
-    print_freq=10, start_eval=30, eval_freq=2
+    print_freq=10, start_eval=10, eval_freq=2
 )
