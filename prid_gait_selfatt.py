@@ -20,7 +20,7 @@ model = torchreid.models.build_model(
     name='resnet_att',
     num_classes=datamanager.num_train_pids,
     loss='softmax',
-    seq_num=15,
+    seq_num=12,
     d_ff=2048,
     h=1,
     droprate=0.1,
@@ -47,5 +47,5 @@ engine = torchreid.engine.VideoSoftmaxATTEngine(
 engine.run(
     max_epoch=100,
     save_dir='log/resnet50att-softmax-prid2011',
-    print_freq=10, start_eval=40, eval_freq=2
+    print_freq=10, start_eval=10, eval_freq=2
 )
