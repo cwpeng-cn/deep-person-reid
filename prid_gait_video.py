@@ -8,7 +8,8 @@ torch.manual_seed(5)
 datamanager = torchreid.data.VideoDataManager(
     root='../',
     sources='prid2011gait',
-    sample_method="random",
+    # sample_method="random",
+    sample_method="evenly",
     transforms=None,
     height=256,
     width=128,
