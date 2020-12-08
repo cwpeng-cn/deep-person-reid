@@ -26,6 +26,7 @@ from .resnet_selfattention_v2 import resnet50_fc512 as resnet50_fc512_att_v2
 from .resnet_selfattention_v3 import resnet50_fc512 as resnet50_fc512_att_v3
 from .resnet_video import resnet50 as resnet_video
 from .resnet_video import resnet50_fc512 as resnet_video_512
+from .resnet_selfattention import resnet50 as resnet_att
 
 __model_factory = {
     # image classification models
@@ -81,7 +82,8 @@ __model_factory = {
     'resnet50_fc512_att_v2': resnet50_fc512_att_v2,
     'resnet50_fc512_att_v3': resnet50_fc512_att_v3,
     'resnet_video': resnet_video,
-    'resnet_video_512': resnet_video_512
+    'resnet_video_512': resnet_video_512,
+    'resnet_att':resnet_att
 }
 
 

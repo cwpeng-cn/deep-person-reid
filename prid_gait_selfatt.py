@@ -8,17 +8,16 @@ torch.manual_seed(5)
 datamanager = torchreid.data.VideoDataManager(
     root='../',
     sources='prid2011gait',
-    # sample_method="random",
-    transforms=None,
     height=256,
     width=128,
+    transforms=None,
     combineall=False,
     batch_size_train=16,  # number of tracklets
-    seq_len=15  # number of images in each tracklet
+    seq_len=12  # number of images in each tracklet
 )
 
 model = torchreid.models.build_model(
-    name='resnet_video',
+    name='resnet_att',
     num_classes=datamanager.num_train_pids,
     loss='softmax',
     seq_num=15,
@@ -29,10 +28,14 @@ model = torchreid.models.build_model(
 )
 
 # load_pretrained_weights(model=model, weight_path="log/resnet50-softmax-prid2011/model/model.pth.tar-43")
-model = model.cuda()
+model.cuda()
+
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=0.0003
+    model, optim='adam', lr=1e-4, staged_lr=True, new_layers=['fc', 'classifier', "encoder", "attn", "ff"],
+    base_lr_mult=0.1
 )
+
+print(model)
 
 scheduler = torchreid.optim.build_lr_scheduler(
     optimizer, lr_scheduler='single_step', stepsize=20)
@@ -43,6 +46,6 @@ engine = torchreid.engine.VideoSoftmaxATTEngine(
 
 engine.run(
     max_epoch=100,
-    save_dir='log/resnet50-video-softmax-prid2011',
-    print_freq=10, start_eval=10, eval_freq=3
+    save_dir='log/resnet50att-softmax-prid2011',
+    print_freq=10, start_eval=40, eval_freq=2
 )

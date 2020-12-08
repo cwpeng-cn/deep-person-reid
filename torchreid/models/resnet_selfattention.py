@@ -374,6 +374,7 @@ class ResNet_ATT(nn.Module):
         v = v.permute(1, 0, 2)
         v = self.attention(v)
         v = v.permute(1, 0, 2).contiguous()
+
         v = torch.mean(v, 1)
         ###########################################################
 
