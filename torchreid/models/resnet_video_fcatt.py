@@ -395,15 +395,10 @@ class ResNet_ATT(nn.Module):
         v = v * att
         if not self.training:
             v = v.unsqueeze(0)
-            att_new = att.unsqueeze(0).detach()
-            att_new = att_new.sum(1)
-            v = torch.sum(v, 1) / att_new
-            return v
+            return v.sum(1)
         else:
             v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
-            att_new = att.view(v.size(0) // self.seq_num, self.seq_num).detach()
-            att_new = att_new.sum(1)
-            v = torch.sum(v, 1) / att_new
+            v = v.sum(1)
 
         y = self.classifier(v)
 
