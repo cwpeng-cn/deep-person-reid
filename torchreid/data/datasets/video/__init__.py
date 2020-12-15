@@ -5,4 +5,5 @@ from .ilidsvid import iLIDSVID
 from .prid2011 import PRID2011
 from .prid2011gait import PRID2011Gait
 from .prid2011gray import PRID2011Gray
+from .prid2011_gait2_cropped import NewPRID2011Gait
 from .dukemtmcvidreid import DukeMTMCVidReID
