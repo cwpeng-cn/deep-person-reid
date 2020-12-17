@@ -29,6 +29,7 @@ from .resnet_video import resnet50_fc512 as resnet_video_512
 from .resnet_selfattention import resnet50 as resnet_att
 from .resnet_video import resnet50 as resnet_video_fcatt
 from .resnet_video import resnet18 as resnet_video_fcatt18
+from .gaitset import Model as gaitnet
 
 __model_factory = {
     # image classification models
@@ -87,7 +88,8 @@ __model_factory = {
     'resnet_video_512': resnet_video_512,
     'resnet_att': resnet_att,
     'resnet_video_fcatt': resnet_video_fcatt,
-    'resnet_video_fcatt18':resnet_video_fcatt18
+    'resnet_video_fcatt18': resnet_video_fcatt18,
+    'gaitnet': gaitnet
 }
 
 

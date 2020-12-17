@@ -98,7 +98,12 @@ class VideoSoftmaxATTEngine(ImageSoftmaxEngine):
             pids = pids.cuda()
 
         outputs = self.model(imgs)
-        loss = self.compute_loss(self.criterion, outputs, pids)
+        if isinstance(outputs, list):
+            loss = 0
+            for output in outputs:
+                loss += self.compute_loss(self.criterion, output, pids)
+        else:
+            loss = self.compute_loss(self.criterion, outputs, pids)
 
         self.optimizer.zero_grad()
         loss.backward()
