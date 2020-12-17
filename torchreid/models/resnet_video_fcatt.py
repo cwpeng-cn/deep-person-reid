@@ -11,7 +11,6 @@ import torch.nn.functional as F
 import math, copy
 from torch.autograd import Variable
 from copy import deepcopy as c
-from .selfattention import SelfAttention
 
 __all__ = [
     'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152',
@@ -395,7 +394,8 @@ class ResNet_ATT(nn.Module):
         v = v * att
         if not self.training:
             v = v.unsqueeze(0)
-            return v.sum(1)
+            v = v.sum(1)
+            return torch.nn.functional.normalize(v, 1)
         else:
             v = v.view(v.size(0) // self.seq_num, self.seq_num, -1)
             v = v.sum(1)

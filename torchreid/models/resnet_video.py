@@ -9,9 +9,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import math, copy
-from torch.autograd import Variable
-from copy import deepcopy as c
-from .selfattention import SelfAttention
+
 
 __all__ = [
     'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152',
@@ -269,7 +267,6 @@ class ResNet_ATT(nn.Module):
                 elif isinstance(m, BasicBlock):
                     nn.init.constant_(m.bn2.weight, 0)
 
-        self.attention = SelfAttention(d_model=self.feature_dim, nhead=2, num_encoder_layers=3)
 
     def _make_layer(self, block, planes, blocks, stride=1, dilate=False):
         norm_layer = self._norm_layer
