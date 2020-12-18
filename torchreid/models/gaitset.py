@@ -154,10 +154,10 @@ class Model(nn.Module):
     def __init__(self, num_classes, loss, pretrained, use_gpu, **kwargs):
         super(Model, self).__init__()
         self.seq_num = kwargs['seq_num']
-        self.encoder = SetNet(hidden_dim=256, seq_num=self.seq_num)
+        self.encoder = SetNet(hidden_dim=256, seq_num=self.seq_num).cuda()
         self.part_num = 62
         self.class_num = num_classes
-        self.classfiers = [nn.Linear(256, self.class_num) for _ in range(self.part_num)]
+        self.classfiers = [nn.Linear(256, self.class_num).cuda() for _ in range(self.part_num)]
         for classfier in self.classfiers:
             nn.init.kaiming_normal_(classfier.weight)
 
