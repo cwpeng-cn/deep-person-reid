@@ -25,7 +25,7 @@ model = torchreid.models.build_model(
 
 model = model.cuda()
 optimizer = torchreid.optim.build_optimizer(
-    model, optim='adam', lr=0.01
+    model, optim='adam', lr=0.0001
 )
 
 scheduler = torchreid.optim.build_lr_scheduler(
