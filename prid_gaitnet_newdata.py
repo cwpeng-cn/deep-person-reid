@@ -29,7 +29,7 @@ optimizer = torchreid.optim.build_optimizer(
 )
 
 scheduler = torchreid.optim.build_lr_scheduler(
-    optimizer, lr_scheduler='single_step', stepsize=120)
+    optimizer, lr_scheduler='single_step', stepsize=240)
 
 engine = torchreid.engine.VideoSoftmaxATTEngine(
     datamanager, model, optimizer, scheduler=scheduler
@@ -38,5 +38,5 @@ engine = torchreid.engine.VideoSoftmaxATTEngine(
 engine.run(
     max_epoch=1000,
     save_dir='log/resnet50-video-softmax-prid2011',
-    print_freq=10, start_eval=500, eval_freq=5
+    print_freq=10, start_eval=800, eval_freq=5
 )
