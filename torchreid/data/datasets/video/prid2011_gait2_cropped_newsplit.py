@@ -85,7 +85,6 @@ class NewSplitPRID2011Gait(VideoDataset):
             return tracklets
 
         dirname2pid = {dirname: i for i, dirname in enumerate(dirnames)}
-
         for dirname in dirnames:
             if cam1:
                 person_dir = osp.join(self.cam_a_dir, dirname)
