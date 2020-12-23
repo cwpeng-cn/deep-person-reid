@@ -36,7 +36,7 @@ optimizer = torchreid.optim.build_optimizer(
 )
 
 scheduler = torchreid.optim.build_lr_scheduler(
-    optimizer, lr_scheduler='single_step', stepsize=20)
+    optimizer, lr_scheduler='single_step', stepsize=30)
 
 engine = torchreid.engine.VideoSoftmaxATTEngine(
     datamanager, model, optimizer, scheduler=scheduler
