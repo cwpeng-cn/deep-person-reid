@@ -17,6 +17,7 @@ datamanager = torchreid.data.VideoDataManager(
     seq_len=15  # number of images in each tracklet
 )
 
+
 model = torchreid.models.build_model(
     name='resnet_video_fcatt',
     num_classes=datamanager.num_train_pids,
