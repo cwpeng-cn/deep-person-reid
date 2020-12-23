@@ -83,7 +83,7 @@ class NewSplitPRID2011Gait(VideoDataset):
                             continue
                         img_names = tuple(img_names)
                         pid = dirname2pid[dirname]
-                        tracklets.append((img_names, pid, 0))
+                        tracklets.append((img_names, pid, cam == self.cam_b_dir))
             return tracklets
 
         dirname2pid = {dirname: i for i, dirname in enumerate(dirnames)}
