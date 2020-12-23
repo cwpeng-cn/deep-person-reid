@@ -70,7 +70,11 @@ class NewSplitPRID2011Gait(VideoDataset):
                     seq_num = len(os.listdir(person_path))
                     if seq_num >= 20:
                         persons.append(person)
-            dirnames = list(set(persons))
+
+            dirnames = []
+            for person in set(persons):
+                if person not in self.test_dirs:
+                    dirnames.append(person)
             dirname2pid = {dirname: i for i, dirname in enumerate(dirnames)}
 
             for dirname in dirnames:
