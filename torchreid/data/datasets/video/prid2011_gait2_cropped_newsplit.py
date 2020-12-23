@@ -90,6 +90,7 @@ class NewSplitPRID2011Gait(VideoDataset):
             if cam1:
                 person_dir = osp.join(self.cam_a_dir, dirname)
                 img_names = glob.glob(osp.join(person_dir, '*.png'))
+                print(img_names, len(img_names))
                 assert len(img_names) > 0
                 img_names = tuple(img_names)
                 pid = dirname2pid[dirname]
