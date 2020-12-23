@@ -68,7 +68,7 @@ class NewSplitPRID2011Gait(VideoDataset):
                 for person in os.listdir(cam):
                     person_path = osp.join(cam, person)
                     seq_num = len(os.listdir(person_path))
-                    if seq_num > 4:
+                    if seq_num >= 15:
                         persons.append(person)
             dirnames = list(set(persons))
             dirname2pid = {dirname: i for i, dirname in enumerate(dirnames)}
