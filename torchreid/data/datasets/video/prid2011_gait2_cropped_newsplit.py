@@ -78,6 +78,7 @@ class NewSplitPRID2011Gait(VideoDataset):
                     person_dir = osp.join(cam, dirname)
                     if osp.exists(person_dir):
                         img_names = glob.glob(osp.join(person_dir, '*.png'))
+                        print(img_names, len(img_names))
                         assert len(img_names) > 0
                         img_names = tuple(img_names)
                         pid = dirname2pid[dirname]
@@ -85,11 +86,11 @@ class NewSplitPRID2011Gait(VideoDataset):
             return tracklets
 
         dirname2pid = {dirname: i for i, dirname in enumerate(dirnames)}
+
         for dirname in dirnames:
             if cam1:
                 person_dir = osp.join(self.cam_a_dir, dirname)
                 img_names = glob.glob(osp.join(person_dir, '*.png'))
-                print(img_names, len(img_names))
                 assert len(img_names) > 0
                 img_names = tuple(img_names)
                 pid = dirname2pid[dirname]
