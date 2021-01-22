@@ -5,7 +5,7 @@ from .image import (
     DukeMTMCreID, iLIDS
 )
 from .video import PRID2011, PRID2011Gait, PRID2011Gray, NewPRID2011Gait, Mars, DukeMTMCVidReID, iLIDSVID, \
-    NewSplitPRID2011Gait
+    NewSplitPRID2011Gait, PRID2011Pose
 from .dataset import Dataset, ImageDataset, VideoDataset
 
 __image_datasets = {
@@ -30,6 +30,7 @@ __video_datasets = {
     'prid2011gray': PRID2011Gray,
     'prid2011_gait2_cropped': NewPRID2011Gait,
     'prid2011_gait2_cropped_newsplit': NewSplitPRID2011Gait,
+    'prid2011pose': PRID2011Pose,
     'dukemtmcvidreid': DukeMTMCVidReID
 }
 
