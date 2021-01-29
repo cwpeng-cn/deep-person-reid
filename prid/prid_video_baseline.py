@@ -1,3 +1,5 @@
+import sys
+sys.path.append("../")
 import torch
 import torchreid
 from torchreid.utils.torchtools import load_pretrained_weights
