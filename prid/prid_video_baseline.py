@@ -8,7 +8,7 @@ torch.manual_seed(0)
 
 # Each batch contains batch_size*seq_len images
 datamanager = torchreid.data.VideoDataManager(
-    root='../../datasets',
+    root='../../../datasets',
     sources='prid2011',
     sample_method="random",
     height=384,
